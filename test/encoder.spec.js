@@ -6,16 +6,19 @@ describe('Encoder', () => {
     const numberWithTwoDigits = 12
     const numberWithThreeDigits = 123
     const numberWithFourDigits = 1234
+    const numberWithFiveDigits = 12345
     const sut = new Encoder()
 
     const code1 = sut.encode(numberWithOneDigit)
     const code2 = sut.encode(numberWithTwoDigits)
     const code3 = sut.encode(numberWithThreeDigits)
     const code4 = sut.encode(numberWithFourDigits)
+    const code5 = sut.encode(numberWithFiveDigits)
     
     expect(code1).toHaveLength(6)
     expect(code2).toHaveLength(6)
     expect(code3).toHaveLength(6)
     expect(code4).toHaveLength(6)
+    expect(code5).toHaveLength(6)
   })
 })
