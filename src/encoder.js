@@ -26,17 +26,23 @@ module.exports = class Encoder {
         return value * Math.pow(16, exponent)
     }
 
+    findDictionaryCharacterPositionOnCode(code) {
+        let position
+        code.split('').forEach((character) => {
+            const found = this.dictionary.findIndex((dictionaryCharacter) => dictionaryCharacter === character)
+            if (found === -1) return false
+
+            position = found
+        })
+
+        return position
+    }
+
     decode(code) {
         let decoded = 0
         const codeWithoutSpecialCharacter = code.replace(`${this.specialCharacter}`, '')
 
-        let foundDictionaryCharacterPosition
-        codeWithoutSpecialCharacter.split('').forEach((character) => {
-            const found = this.dictionary.findIndex((dictionaryCharacter) => dictionaryCharacter === character)
-            if (found === -1) return false
-
-            foundDictionaryCharacterPosition = found
-        })
+        const foundDictionaryCharacterPosition = this.findDictionaryCharacterPositionOnCode(codeWithoutSpecialCharacter)
 
         if (foundDictionaryCharacterPosition !== undefined) {
             const usablePortion = codeWithoutSpecialCharacter.substring(0, 5)
