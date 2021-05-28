@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --noStackTrace --runInBand --verbose"
+    "test": "jest --noStackTrace --runInBand --verbose",
+    "test:watch": "npm run test -- --watch"
   },
   "keywords": [],
   "author": "",
