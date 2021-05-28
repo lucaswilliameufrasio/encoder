@@ -23,9 +23,32 @@ module.exports = class Encoder {
     }
 
     decode(code) {
+        let decoded = 0
         const codeWithoutSpecialCharacter = code.replace(`${this.specialCharacter}`, '')
 
-        const decoded = parseInt(codeWithoutSpecialCharacter, 16)
+        let foundDictionaryCharacterPosition
+        codeWithoutSpecialCharacter.split('').forEach((character) => {
+            const found = this.dictionary.findIndex((dictionaryCharacter) => dictionaryCharacter === character)
+            if (found === -1) return false
+
+            foundDictionaryCharacterPosition = found
+        })
+
+        if (foundDictionaryCharacterPosition !== undefined) {
+            const usablePortion = codeWithoutSpecialCharacter.substring(0, 5)
+            
+            for (let index = 5; index > 0; index--) {
+                const character = usablePortion.split('').reverse().join('').substring(index - 1, index);
+
+                decoded += parseInt(character, 16) * Math.pow(16, index + 1)
+            }
+            
+            decoded += foundDictionaryCharacterPosition * 16 + foundDictionaryCharacterPosition
+            
+            return decoded
+        }
+
+        decoded = parseInt(codeWithoutSpecialCharacter, 16)
 
         return decoded
     }
