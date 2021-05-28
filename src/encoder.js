@@ -1,6 +1,6 @@
 module.exports = class Encoder {
     codeLength = 6
-    specialCode = '+'
+    specialCharacter = '+'
     dictionary = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%*()|-_=^/?'.split("")
     
     encode(number) {
@@ -8,7 +8,7 @@ module.exports = class Encoder {
 
         if (encodedNumber.length < 6) {
             const missingCharacters = this.codeLength - encodedNumber.length
-            encodedNumber += this.specialCode.repeat(missingCharacters).toString()
+            encodedNumber += this.specialCharacter.repeat(missingCharacters).toString()
         }
 
         if (encodedNumber.length > 6) {
@@ -20,5 +20,13 @@ module.exports = class Encoder {
         }
         
         return encodedNumber
+    }
+
+    decode(code) {
+        const codeWithoutSpecialCharacter = code.replace(`${this.specialCharacter}`, '')
+
+        const decoded = parseInt(codeWithoutSpecialCharacter, 16)
+
+        return decoded
     }
 }
