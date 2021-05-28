@@ -36,11 +36,14 @@ describe('Encoder', () => {
   describe('decode()', () => {
     it ('Should return a number', () => {
       const codeWithSpecialCharacter = '9+++++'
+      const codeWithoutSpecialCharacter = '12d687'
       const sut = new Encoder()
 
-      const number = sut.decode(codeWithSpecialCharacter)
+      const number1 = sut.decode(codeWithSpecialCharacter)
+      const number2 = sut.decode(codeWithoutSpecialCharacter)
 
-      expect(number).toBe(9)
+      expect(number1).toBe(9)
+      expect(number2).toBe(1234567)
     })
   })
 })
