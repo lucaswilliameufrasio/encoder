@@ -22,6 +22,10 @@ module.exports = class Encoder {
         return encodedNumber
     }
 
+    convertValueFromHexadecimalToDecimal(value, exponent = 1) {
+        return value * Math.pow(16, exponent)
+    }
+
     decode(code) {
         let decoded = 0
         const codeWithoutSpecialCharacter = code.replace(`${this.specialCharacter}`, '')
@@ -40,10 +44,10 @@ module.exports = class Encoder {
             for (let index = 5; index > 0; index--) {
                 const character = usablePortion.split('').reverse().join('').substring(index - 1, index);
 
-                decoded += parseInt(character, 16) * Math.pow(16, index + 1)
+                decoded += this.convertValueFromHexadecimalToDecimal(parseInt(character, 16), index + 1)
             }
             
-            decoded += foundDictionaryCharacterPosition * 16 + foundDictionaryCharacterPosition
+            decoded += this.convertValueFromHexadecimalToDecimal(foundDictionaryCharacterPosition, 1) + foundDictionaryCharacterPosition
             
             return decoded
         }
