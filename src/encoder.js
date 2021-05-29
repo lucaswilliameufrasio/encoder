@@ -18,8 +18,22 @@ module.exports = class Encoder {
 
             // Get the sixth position digit and convert to decimal
             const decimalOfTheDigitAtSixthPosition = parseInt(encodedNumber.substring(5, 6), 16)
+            // Get the seven position digit and convert to decimal
+            const decimalOfTheDigitAtSeventhPosition = parseInt(encodedNumber.substring(6, 7), 16)
+            console.log(decimalOfTheDigitAtSixthPosition)
             // Get a substitute on the dictionary to the sixth position character
-            const characterSubstitute = this.dictionary[decimalOfTheDigitAtSixthPosition]
+            let characterSubstitute
+
+            // To reduce collision we verify if the digit at sixth position is
+            // greater than the digit at seventh position.
+            // If it is true, we subtract by the dictionary length.
+            // Think of it as we are getting the N element from the left to the right,
+            // or from right to the left 
+            if (decimalOfTheDigitAtSixthPosition > decimalOfTheDigitAtSeventhPosition) {
+                characterSubstitute = this.dictionary[decimalOfTheDigitAtSixthPosition + decimalOfTheDigitAtSeventhPosition]
+            } else {
+                characterSubstitute = this.dictionary[this.dictionary.length - (decimalOfTheDigitAtSixthPosition + decimalOfTheDigitAtSeventhPosition)]
+            }
             
             encodedNumber = usablePortion.toString() + characterSubstitute.toString()
         }
