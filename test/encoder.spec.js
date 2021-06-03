@@ -40,7 +40,9 @@ describe("Encoder", () => {
       const error = () => sut.encode(invalidNumber);
 
       expect(error).toThrow(Error);
-      expect(error).toThrow("Invalid number provided. Only numbers between 0 and 99999999 are allowed");
+      expect(error).toThrow(
+        "Invalid number provided. Only numbers between 0 and 99999999 are allowed"
+      );
     });
   });
 
