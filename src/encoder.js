@@ -49,6 +49,9 @@ module.exports = class Encoder {
         power++
     })
     
+    if(decoded > 99999999 || decoded < 0) {
+        throw new Error('Invalid code provided')
+    }
 
 
     return decoded

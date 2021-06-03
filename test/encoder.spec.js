@@ -55,6 +55,15 @@ describe('Encoder', () => {
       expect(number5).toBe(99999985)
     })
 
+    it('Should throw if code is invalid', () => {
+      const invalidCode = '5f5e0Q'
+
+      const sut = new Encoder()
+
+      const error = () => sut.decode(invalidCode)
+
+      expect(error).toThrow(Error)
+      expect(error).toThrow('Invalid code provided')
     })
   })
 })
