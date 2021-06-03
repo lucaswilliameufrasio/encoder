@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js",
     "test": "jest --noStackTrace --runInBand --verbose",
     "test:watch": "npm run test -- --watch"
   },
