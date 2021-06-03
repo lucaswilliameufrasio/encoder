@@ -31,6 +31,17 @@ describe("Encoder", () => {
       expect(code7).toHaveLength(6);
       expect(code8).toHaveLength(6);
     });
+
+    it("Should throw if number is invalid", () => {
+      const invalidNumber = "999999859";
+
+      const sut = new Encoder();
+
+      const error = () => sut.encode(invalidNumber);
+
+      expect(error).toThrow(Error);
+      expect(error).toThrow("Invalid number provided. Only numbers between 0 and 99999999 are allowed");
+    });
   });
 
   describe("decode()", () => {
