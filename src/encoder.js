@@ -22,7 +22,7 @@ module.exports = class Encoder {
       encodedNumber += this.dictionary[remainder];
     }
 
-    if (encodedNumber.length < 6) {
+    if (encodedNumber.length < this.codeLength) {
       const missingCharacters = this.codeLength - encodedNumber.length;
 
       // Concatenate N times the special character
