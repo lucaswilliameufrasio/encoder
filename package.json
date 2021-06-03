@@ -1,16 +1,13 @@
 {
   "name": "encode_decode",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
+  "author": "lucaswilliameufrasio@gmail.com",
+  "license": "MIT",
   "scripts": {
     "start": "node src/index.js",
     "test": "jest --noStackTrace --runInBand --verbose",
     "test:watch": "npm run test -- --watch"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@types/jest": "^26.0.23",
     "@types/node": "^15.6.1",
