@@ -35,18 +35,26 @@ describe('Encoder', () => {
 
   describe('decode()', () => {
     it ('Should return a number', () => {
-      const codeWithSpecialCharacter = '9+++++'
-      const codeWithoutSpecialCharacter = '12d687'
-      const codeWithDictionaryCharacter = '5f5e0P'
+      const codeWithSpecialCharacter = '+++++J'
+      const codeWithoutSpecialCharacter = 'HUVFB+'
+      const codeWithDictionaryCharacter1 = '*HYL*C'
+      const codeWithDictionaryCharacter2 = '+++++W'
+      const codeWithDictionaryCharacter3 = 'RHYL*C'
       const sut = new Encoder()
 
       const number1 = sut.decode(codeWithSpecialCharacter)
       const number2 = sut.decode(codeWithoutSpecialCharacter)
-      const number3 = sut.decode(codeWithDictionaryCharacter)
+      const number3 = sut.decode(codeWithDictionaryCharacter1)
+      const number4 = sut.decode(codeWithDictionaryCharacter2)
+      const number5 = sut.decode(codeWithDictionaryCharacter3)
 
       expect(number1).toBe(9)
       expect(number2).toBe(1234567)
       expect(number3).toBe(99999999)
+      expect(number4).toBe(22)
+      expect(number5).toBe(99999985)
+    })
+
     })
   })
 })
