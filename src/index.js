@@ -1,5 +1,6 @@
-const repl = require('repl')
 const Encoder = require('./encoder')
+
+const repl = require('repl')
 
 const encoder = new Encoder()
 
