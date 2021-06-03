@@ -13,9 +13,6 @@ module.exports = class Encoder {
     while (quotient !== 0) {
       quotient = Math.trunc(quotient / 32)
       const remainder = dividend - (quotient * 32)
-      // console.log("Quotient times 32 = " + quotient * 32)
-      // console.log("Dividend = " + dividend)
-    //   console.log("Remainder = " + remainder)
       dividend = quotient
       encodedNumber += this.dictionary[remainder]
     }
