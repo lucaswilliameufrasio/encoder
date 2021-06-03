@@ -76,5 +76,16 @@ describe("Encoder", () => {
       expect(error).toThrow(Error);
       expect(error).toThrow("Invalid code provided");
     });
+
+    it("Should throw if code has invalid character", () => {
+      const invalidCode = "RHYL*a";
+
+      const sut = new Encoder();
+
+      const error = () => sut.decode(invalidCode);
+
+      expect(error).toThrow(Error);
+      expect(error).toThrow("Invalid code provided");
+    });
   });
 });

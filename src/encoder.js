@@ -48,6 +48,9 @@ module.exports = class Encoder {
       const positionOnDictionary = this.dictionary.findIndex(
         (word) => word === character,
       )
+      if (positionOnDictionary === -1) {
+        throw new Error('Invalid code provided')
+      }
       decoded += +positionOnDictionary * Math.pow(32, power)
       power++
     })
