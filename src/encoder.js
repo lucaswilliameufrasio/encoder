@@ -1,7 +1,13 @@
 module.exports = class Encoder {
-  codeLength = 6
-  specialCharacter = '+'
-  dictionary = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%*()|-_=^/?'.split('')
+  codeLength
+  specialCharacter
+  dictionary
+
+  constructor(codeLength, specialCharacter, dictionary) {
+    this.codeLength = codeLength
+    this.specialCharacter = specialCharacter
+    this.dictionary = dictionary
+  }
 
   encode(number) {
     let encodedNumber = ''

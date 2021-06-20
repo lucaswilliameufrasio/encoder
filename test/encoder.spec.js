@@ -1,5 +1,17 @@
 const Encoder = require('../src/encoder')
 
+const makeSut = (codeLength = 6) => {
+  const sut = new Encoder(
+    codeLength,
+    '+',
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%*()|-_=^/?'.split(''),
+  )
+
+  return {
+    sut,
+  }
+}
+
 describe('Encoder', () => {
   describe('encode()', () => {
     it('Should return a code with fixed length of 6', () => {
@@ -11,7 +23,7 @@ describe('Encoder', () => {
       const numberWithSixDigits = 123456
       const numberWithSevenDigits = 1234567
       const numberWithEightDigits = 99999999
-      const sut = new Encoder()
+      const { sut } = makeSut()
 
       const code1 = sut.encode(numberWithOneDigit)
       const code2 = sut.encode(numberWithTwoDigits)
@@ -35,7 +47,7 @@ describe('Encoder', () => {
     it('Should throw if number is invalid', () => {
       const invalidNumber = '999999859'
 
-      const sut = new Encoder()
+      const { sut } = makeSut()
 
       const error = () => sut.encode(invalidNumber)
 
@@ -53,7 +65,7 @@ describe('Encoder', () => {
       const codeWithDictionaryCharacter1 = '*HYL*C'
       const codeWithDictionaryCharacter2 = '+++++W'
       const codeWithDictionaryCharacter3 = 'RHYL*C'
-      const sut = new Encoder()
+      const { sut } = makeSut()
 
       const number1 = sut.decode(codeWithSpecialCharacter)
       const number2 = sut.decode(codeWithoutSpecialCharacter)
@@ -71,7 +83,7 @@ describe('Encoder', () => {
     it('Should throw if code is invalid', () => {
       const invalidCode = '5f5e0Q'
 
-      const sut = new Encoder()
+      const { sut } = makeSut()
 
       const error = () => sut.decode(invalidCode)
 
@@ -82,7 +94,7 @@ describe('Encoder', () => {
     it('Should throw if code has invalid character', () => {
       const invalidCode = 'RHYL*a'
 
-      const sut = new Encoder()
+      const { sut } = makeSut()
 
       const error = () => sut.decode(invalidCode)
 
