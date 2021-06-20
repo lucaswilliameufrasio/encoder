@@ -15,6 +15,10 @@ module.exports = class Encoder {
     if (!Array.isArray(dictionary)) {
       throw new Error('dictionary needs to be an array of characters')
     }
+  
+    if (dictionary.filter(word => typeof word !== 'string' && isNaN(word)).length) {
+      throw new Error('dictionary could only contain characters and numbers')
+    }
 
     this.codeLength = codeLength
     this.specialCharacter = specialCharacter

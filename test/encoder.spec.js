@@ -32,6 +32,13 @@ describe('Encoder', () => {
     )
   })
 
+  it('Should throw if dictionary not contains characters or numbers', () => {
+    const sutError = () => makeSut(6, '+', ['A', () => {}])
+    expect(sutError).toThrowError(
+      'dictionary could only contain characters and numbers',
+    )
+  })
+
   describe('encode()', () => {
     it('Should return a code with fixed length of 6', () => {
       const numberWithOneDigit = 9
