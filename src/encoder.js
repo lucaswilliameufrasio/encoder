@@ -8,22 +8,26 @@ module.exports = class Encoder {
       throw new Error('codeLength could be only a number')
     }
 
-    if(dictionary.includes(specialCharacter)) {
-      throw new Error('specialCharacter could not be included in the dictionary')
+    if (dictionary.includes(specialCharacter)) {
+      throw new Error(
+        'specialCharacter could not be included in the dictionary',
+      )
     }
 
     if (!Array.isArray(dictionary)) {
       throw new Error('dictionary needs to be an array of characters')
     }
-  
-    if (dictionary.filter(word => typeof word !== 'string' && isNaN(word)).length) {
+
+    if (
+      dictionary.filter((word) => typeof word !== 'string' && isNaN(word))
+        .length
+    ) {
       throw new Error('dictionary could only contain characters and numbers')
     }
 
     this.codeLength = codeLength
     this.specialCharacter = specialCharacter
     this.dictionary = dictionary
-
   }
 
   encode(number) {
