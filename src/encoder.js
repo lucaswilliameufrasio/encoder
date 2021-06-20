@@ -12,6 +12,10 @@ module.exports = class Encoder {
       throw new Error('specialCharacter could not be included in the dictionary')
     }
 
+    if (!Array.isArray(dictionary)) {
+      throw new Error('dictionary needs to be an array of characters')
+    }
+
     this.codeLength = codeLength
     this.specialCharacter = specialCharacter
     this.dictionary = dictionary

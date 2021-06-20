@@ -1,11 +1,11 @@
 const Encoder = require('../src/encoder')
 
-const makeSut = (codeLength = 6, specialCharacter = '+') => {
-  const sut = new Encoder(
-    codeLength,
-    specialCharacter,
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%*()|-_=^/?'.split(''),
-  )
+const makeSut = (
+  codeLength = 6,
+  specialCharacter = '+',
+  dictionary = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%*()|-_=^/?'.split(''),
+) => {
+  const sut = new Encoder(codeLength, specialCharacter, dictionary)
 
   return {
     sut,
@@ -17,10 +17,19 @@ describe('Encoder', () => {
     const sutError = () => makeSut('6')
     expect(sutError).toThrowError('codeLength could be only a number')
   })
-  
+
   it('Should throw if specialCharacter is included on dictionary', () => {
     const sutError = () => makeSut(6, 'A')
-    expect(sutError).toThrowError('specialCharacter could not be included in the dictionary')
+    expect(sutError).toThrowError(
+      'specialCharacter could not be included in the dictionary',
+    )
+  })
+
+  it('Should throw if dictionary is not an array', () => {
+    const sutError = () => makeSut(6, '+', 'AB')
+    expect(sutError).toThrowError(
+      'dictionary needs to be an array of characters',
+    )
   })
 
   describe('encode()', () => {
