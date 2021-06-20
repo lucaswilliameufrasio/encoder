@@ -13,6 +13,11 @@ const makeSut = (codeLength = 6) => {
 }
 
 describe('Encoder', () => {
+  it('Should throw if a codeLength provided is not a number', () => {
+    const sutError = () => makeSut('6')
+    expect(sutError).toThrowError('codeLength could be only a number')
+  })
+
   describe('encode()', () => {
     it('Should return a code with fixed length of 6', () => {
       const numberWithOneDigit = 9

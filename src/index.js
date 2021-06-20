@@ -2,7 +2,11 @@ const Encoder = require('./encoder')
 
 const repl = require('repl')
 
-const encoder = new Encoder()
+const encoder = new Encoder(
+  6,
+  '+',
+  'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%*()|-_=^/?'.split(''),
+)
 
 const replServer = repl.start({ prompt: '> ' })
 

@@ -4,6 +4,10 @@ module.exports = class Encoder {
   dictionary
 
   constructor(codeLength, specialCharacter, dictionary) {
+    if (typeof codeLength !== 'number') {
+      throw new Error('codeLength could be only a number')
+    }
+
     this.codeLength = codeLength
     this.specialCharacter = specialCharacter
     this.dictionary = dictionary
