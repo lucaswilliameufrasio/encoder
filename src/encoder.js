@@ -8,9 +8,14 @@ module.exports = class Encoder {
       throw new Error('codeLength could be only a number')
     }
 
+    if(dictionary.includes(specialCharacter)) {
+      throw new Error('specialCharacter could not be included in the dictionary')
+    }
+
     this.codeLength = codeLength
     this.specialCharacter = specialCharacter
     this.dictionary = dictionary
+
   }
 
   encode(number) {
